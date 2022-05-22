@@ -1,0 +1,28 @@
+/* script showing off the '__str' function
+ * whenever you call the 'string' or 'print[ln]' function on a value, it's converted to string.
+ * the default way of converting an object to a string is listing all of it's fields like so
+ * { foo: 2, bar: "hello", }
+ * however, you can bypass that by setting the objects '__str' field.
+ * if the value of '__str' is of type '@function' or '@native_function', whenever the object is
+ * converted to string the function is called and it's result is taken as the result of the conversion.
+ * if the value of '__str' is of any other type, the value is converted to string and then taken as the
+ * result.
+ */
+
+Car = {
+	args(manufacturer,color);
+	result = obj();
+	result.manufacturer = manufacturer;
+	result.color = color;
+	result.__str = {
+		"car: " + this().color + " " + this().manufacturer;
+	};
+	result;
+};
+
+car = Car("BMW", "red");
+println(car);
+
+/* modules are the same as any other objects, so you can set their '__str' value as well */
+math.__str = "standard math library";
+print(math);

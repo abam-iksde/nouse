@@ -1,0 +1,4 @@
+/* this script shows off the 'require' function */
+
+greetlib = require("l_greet.nouse");
+greetlib:greet("You");

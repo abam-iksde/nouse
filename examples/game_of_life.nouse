@@ -1,0 +1,93 @@
+math:random_seed();
+
+BOARD_WIDTH = 40;
+BOARD_HEIGHT = 40;
+
+generate_board = {
+	args(let width, let height, let randomize);
+	let board = list();
+	let i = 0;
+	{i < height} do {
+		let j = 0;
+		let row = list();
+		{j < width} do {
+			row:append(randomize ? (math:random() > 0.5 ? (true, false), false));
+			j = j+1;
+		};
+		board:append(row);
+		i = i+1;
+	};
+	board;
+};
+
+board_get_at = {
+	args(let board, let x, let y);
+	let width = board:get(0):length();
+	let height = board:length();
+	let result = 0;
+	((x >= 0) and (x < width-1) and (y >= 0) and (y < height-1)) ? {
+		result = board:get(x):get(y) ? (1, 0);
+	};
+	result;
+};
+
+update_board = {
+	args(let current_board);
+	let width = current_board:get(0):length();
+	let height = current_board:length();
+	let new_board = generate_board(width,height);
+	let i = 0;
+	{i < height} do {
+		let j = 0;
+		{j < width} do {
+			let neighbours =
+				 board_get_at(current_board,i-1,j-1) + board_get_at(current_board,i,j-1) + board_get_at(current_board,i+1,j-1)
+				+board_get_at(current_board,i-1,j  )                                     + board_get_at(current_board,i+1,j  )
+				+board_get_at(current_board,i-1,j+1) + board_get_at(current_board,i,j+1) + board_get_at(current_board,i+1,j+1);
+			/*print(neighbours);*/
+			current_board:get(i):get(j) ? ({
+				(neighbours < 2 or neighbours > 3) ? ({
+					new_board:get(i):set(j, false);
+				} /*else*/ {
+					new_board:get(i):set(j, true);
+				});
+			} /*else*/ {
+				(neighbours == 3) ? ({
+					new_board:get(i):set(j, true);
+				} /*else*/ {
+					new_board:get(i):set(j, false);
+				});
+			});
+			
+			j = j+1;
+		};
+		i = i+1;
+	};
+	new_board;
+};
+
+show_board = {
+	args(let board);
+	i = 0;
+	let text = "----------------------------------------------------\n";
+	{i < board:length()} do {
+		let j = 0;
+		let row = list();
+		{j < board:get(i):length()} do {
+			text = text + (board:get(i):get(j) ? ('O', ' '));
+			j = j + 1;
+		};
+		text = text+'\n';
+		i = i + 1;
+	};
+	println(text);
+};
+
+let brd = generate_board(BOARD_WIDTH,BOARD_HEIGHT,true);
+
+{true} do {
+	/*let start_time = time();*/
+	brd = update_board(brd);
+	show_board(brd);
+	/*println(format("this frame took %v seconds.", time() - start_time));*/
+};

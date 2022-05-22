@@ -1,0 +1,27 @@
+/* the script prints 20 Fibonacci numbers */
+fib = {
+	args(n);
+	let i = 0;
+	let a = 0;
+	let b = 1;
+	let c;
+	{i < n} do {
+		c = a+b;
+		a = b;
+		b = c;
+		println(c);
+		i = i + 1;
+	};
+};
+
+/* recursive solution */
+fibr = {
+	args(n);
+	(n <= 2) ? ({
+		1;
+	},{
+		fibr(n-2)+fibr(n-1);
+	});
+};
+
+fib(20);

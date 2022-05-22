@@ -1,0 +1,9 @@
+/* this script is an example library for 'require.nouse' */
+
+let greet = {
+	args(who);
+	println("hello ", who);
+};
+
+/* a short library description (see '__str.nouse') */
+let __str = "a library that greets";

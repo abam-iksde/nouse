@@ -1,0 +1,2 @@
+println("Hello, 世界");
+input();

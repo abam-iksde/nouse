@@ -1,0 +1,13 @@
+/* 'math' object currently has no sign function but we can freely extend it with our own ideas */
+math.sign = {
+	args(x);
+	if (
+		(x == 0), 0,
+		(x > 0), 1,
+		(-1)
+	);
+};
+
+println(math:sign(10));
+println(math:sign(-0.2));
+println(math:sign(0));

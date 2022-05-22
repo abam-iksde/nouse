@@ -1,0 +1,67 @@
+/* famous rotating donut */
+/* translated from: https://gist.github.com/gcr/1075131 */
+/* orders of magnitide slower than the C version */
+
+main = {
+	let chars = list('.',',','-','~',':',';','=','!','*','#','$','@');
+
+	let k;
+	let A=0.0;
+	let B=0.0;
+	let i;
+	let j;
+	let z = list();
+	let b = list();
+	
+	let _i = 0;
+	{_i < 1760} do {z:append(0.0);b:append(' ');_i = _i + 1;};
+	{true} do {
+		_i = 0;
+		{_i < 1760} do {z:append(0.0);b:append(' ');_i = _i + 1;};
+		j = 0.0;
+		{j < 6.28} do {
+			i = 0.0;
+			{i < 6.28} do {
+				let sini = math:sin(i);
+				let cosj = math:cos(j);
+				let sinA = math:sin(A);
+				let sinj = math:sin(j);
+				let cosA = math:cos(A);
+				let cosj2 = cosj+2;
+				let mess = 1.0/(sini*cosj2*sinA+sinj*cosA+5);
+				let cosi = math:cos(i);
+				let cosB = math:cos(B);
+				let sinB = math:sin(B);
+				let t = sini*cosj2*cosA-sinj*sinA;
+				
+				let x = int(40+30*mess*(cosi*cosj2*cosB-t*sinB));
+				let y = int(12+15*mess*(cosi*cosj2*sinB+t*cosB));
+				let o = int(x+80*y);
+				let N = int(8*((sinj*sinA-sini*cosj*cosA)*cosB-sini*cosj*sinA-sinj*cosA-cosi*cosj*sinB));
+				
+				((y < 22) and (y > 0) and (x > 0) and (x < 80) and (mess > z:get(o))) ? {
+					z:set(o, mess);
+					b:set(o, chars:get((N > 0) ? (N, 0)));
+				};
+			
+				i = i+0.02;
+			};
+			j = j+0.07;
+		};
+		
+		k = 0;
+		{k < 1760/80} do {
+			_i = 0;
+			{_i < 80} do {
+				print(b:get(k*80+_i));
+				_i = _i+1;
+			}
+			println();
+			k = k+1;
+		};
+		A = A + 0.04;
+		B = B + 0.02;
+	};
+};
+
+main();

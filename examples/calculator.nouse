@@ -1,0 +1,34 @@
+println("-- CALCULATOR --");
+println("1. Add");
+println("2. Subtract");
+println("3. Multiply");
+println("4. Divide");
+option = -1;
+{option < 1 or option > 4} do {
+	option = int(input("Select operation: "));
+	option == none ? {
+		option = -1;
+	};
+};
+a = none;
+b = none;
+{a == none} do {
+	a = float(input("a: "));
+};
+{b == none} do {
+	b = float(input("b: "));
+};
+if (
+	option == 1 {
+		println(a, '+', b, '=', a+b);
+	}
+	option == 2 {
+		println(a, '-', b, '=', a-b);
+	}
+	option == 3 {
+		println(a, 'x', b, '=', a*b);
+	}
+	option == 4 {
+		println(a, ':', b, '=', a/b);
+	}
+);

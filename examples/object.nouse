@@ -1,0 +1,40 @@
+/* constructor for 'dog' object */
+dog = {
+	result = obj();
+	result.talk = {
+		println("woof woof");
+	};
+	result;
+};
+/* constructor for 'santa' object */
+santa = {
+	result = obj();
+	result.talk = {
+		println("ho ho ho");
+	};
+	result;
+};
+
+/* creating a list and populating it with 100 objects */
+l = list();
+i = 0;
+{i < 100} do {
+	/* choose between 'dog' and 'santa' randomly */
+	r = math:random();
+	r > 0.5 ? (
+		{
+			l:append(dog());
+		}
+		{
+			l:append(santa());
+		}
+	);
+	i = i+1;
+};
+
+/* big reveal */
+i = 0;
+{i < 100} do {
+	l:at(i):talk();
+	i = i+1;
+};
