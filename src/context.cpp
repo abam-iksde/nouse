@@ -59,7 +59,7 @@ namespace nouse {
 		this->registerFunction("if", &_extIf);
 		this->registerFunction("time", &_time);
 		this->registerFunction("require", &_require);
-		this->registerFunction("function_from_string", &_functionFromString);
+		this->registerFunction("compile_string", &_compileString);
 
 		this->setGlobal("math", getStdMathObj());
 	}

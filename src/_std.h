@@ -405,10 +405,10 @@ namespace nouse {
 		ctx->loadedModules[modulePath] = o;
 		return result;
 	}
-	Value* _functionFromString(Context* ctx, i64 branch, i64 line, i64 fileind) {
+	Value* _compileString(Context* ctx, i64 branch, i64 line, i64 fileind) {
 		std::vector< Value* > args = ctx->getTopFunctionArgs();
 		if (args.size() < 1) {
-			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'function_from_string' takes one argument" << std::endl;
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'compile_string' takes one argument" << std::endl;
 			Value* result = new Value();
 			String* _s = new String("NotEnoughArguments");
 			result->setError(_s);
@@ -416,7 +416,7 @@ namespace nouse {
 			return result;
 		}
 		else if (args[0]->getType() != ValueType::STRING) {
-			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": first argument of 'function_from_string' has to be a string" << std::endl;
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": first argument of 'compile_string' has to be a string" << std::endl;
 			Value* v = new Value();
 			String* _s = new String("InvalidArgument");
 			v->setError(_s);
@@ -429,7 +429,7 @@ namespace nouse {
 			s = new String(args[1]->toString());
 		}
 		else {
-			s = new String("function_from_string");
+			s = new String("compile_string_result");
 		}
 		functionFileName->setString(s);
 		delete s;

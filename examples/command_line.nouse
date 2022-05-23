@@ -3,5 +3,5 @@ without specifying a file in command line/terminal.
 side effect of such solution is that name 'f' cannot be used for user's variable.
 also, calling 'f()' in command line will result in an endless recursive loop.*/
 print("> ");
-let f = function_from_string(input(),"command_line");
+let f = compile_string(input(),"command_line");
 f@@();
