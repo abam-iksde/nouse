@@ -356,6 +356,7 @@ namespace nouse {
 		//Value* result = _newObject(ctx, branch, line, fileind);
 		Value* result = new Value();
 		Object* o = new Object();
+		ctx->loadedModules[modulePath] = o;
 		result->setObject(o);
 		Function* f = compileFile(modulePath);
 		i64 b = ctx->pushBranch();
@@ -363,7 +364,6 @@ namespace nouse {
 		f->call(ctx, b);
 		ctx->popBranch();
 		delete f;
-		ctx->loadedModules[modulePath] = o;
 		return result;
 	}
 	Value* _compileString(Context* ctx, i64 branch, i64 line, i64 fileind) {

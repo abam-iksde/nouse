@@ -5,6 +5,7 @@
 #include <Windows.h>
 
 #include "nouse.h"
+#include "tokenize.h"
 
 #pragma comment(linker, "/STACK:32000000")
 

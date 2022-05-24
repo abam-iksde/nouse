@@ -2,6 +2,7 @@
 
 #include <string>
 #include <fstream>
+#include <map>
 
 #include "function.h"
 #include "tokenize.h"
@@ -350,7 +351,7 @@ namespace nouse {
 			body.push_back(vv);
 		}
 
-		Function* result = new Function(body);
+		Function* result = new Function(body, tokens[0].file);
 		return result;
 	}
 

@@ -94,6 +94,8 @@ namespace nouse {
 			}
 		}
 
+		tokens.push_back({ 0, fileind, ";" });
+
 		i64 line = 1;
 		stdstr_t buffer = "";
 		boolean inString = b_false;
