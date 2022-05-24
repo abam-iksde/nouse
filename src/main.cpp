@@ -25,7 +25,7 @@ int main(int argc,char** argv) {
 	}
 	else {
 		doOver = true;
-		f = nouse::compileString("print('> '); let f = compile_string(input(), 'command_line'); f@@(); println();");
+		f = nouse::compileString("print('> '); let f = compile_string(input(), 'command_line'); f@@(); println();","cmdl");
 	}
 	
 	ctx->pushBranch();

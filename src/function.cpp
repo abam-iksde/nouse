@@ -31,11 +31,11 @@ namespace nouse {
 			if (this->ownerModule != -1) {
 				Value* vModule = new Value();
 				stdstr_t moduleName = *getSourceFileName(this->ownerModule);
-				if (!ctx->loadedModules.count(moduleName)) {
+;				if (!ctx->loadedModules.count(moduleName)) {
 					ctx->loadedModules[moduleName] = new Object();
 				}
 				vModule->setObject(ctx->loadedModules[moduleName]);
-				ctx->setVariable("_", vModule, _branch);
+				ctx->setVariable("_", vModule);
 				delete vModule;
 			}
 			result = this->body[i]->getFunctionCall()->execute(ctx,_branch);

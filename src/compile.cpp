@@ -350,7 +350,7 @@ namespace nouse {
 			vv->setFunctionCall(fcall);
 			body.push_back(vv);
 		}
-
+		
 		Function* result = new Function(body, tokens[0].file);
 		return result;
 	}
