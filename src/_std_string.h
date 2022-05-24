@@ -114,6 +114,74 @@ namespace nouse {
 		delete _s;
 		return result;
 	}
+	Value* _stringSubstr(Context* ctx, i64 branch, i64 line, i64 fileind) {
+		std::vector< Value* > args = ctx->getTopFunctionArgs();
+		if (args.size() < 3) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'str_substr' takes 3 arguments" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("NotEnoughArguments");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		if (args[0]->getType() != ValueType::STRING) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": first argument of 'str_substr' has to be a string" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		if (args[1]->getType() != ValueType::INT) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": second argument of 'str_substr' has to be an int" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		if (args[2]->getType() != ValueType::INT) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": third argument of 'str_substr' has to be an int" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+
+		Value* arg0 = args[0];
+		i64 pos = args[1]->getInt();
+		i64 len = args[2]->getInt();
+		if (pos < 0 || pos >= arg0->getString()->value.length()) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'str_substr' substring position out of range" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		if (len < 0) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'str_substr' substring length cannot be smaller than 0" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		if (pos + len >= arg0->getString()->value.length()) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'str_substr' substring position+length out of range" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		Value* result = new Value();
+		String* s = new String(arg0->getString()->value.substr(pos, len));
+		result->setString(s);
+		delete s;
+		return result;
+	}
 }
 
 #endif
