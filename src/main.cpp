@@ -1,9 +1,6 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include <locale>
-#include <codecvt>
-#include <cstdlib>
 
 #include <Windows.h>
 
@@ -11,17 +8,7 @@
 
 #pragma comment(linker, "/STACK:32000000")
 
-std::wstring charptrToWstring(char* s) {
-	std::wstring ws(&s[0], &s[std::strlen(s)]);
-	return ws;
-}
-
-//#define DEV_MODE
-
 int main(int argc,char** argv) {
-	//SetConsoleOutputCP(CP_UTF8);
-	//setvbuf(stdout, nullptr, _IOFBF, 1000);
-	
 	bool doOver = false;
 
 	nouse::setShowErrors(b_true);
