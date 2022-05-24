@@ -63,6 +63,8 @@ namespace nouse {
 
 		// _std_string.h
 		this->registerFunction("format", &_format);
+		this->registerFunction("str_length", &_stringLength);
+		this->registerFunction("str_char_at", &_stringCharAt);
 
 		// _std_math.h
 		this->setGlobal("math", getStdMathObj());
