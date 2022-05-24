@@ -8,6 +8,7 @@
 #include "_std.h"
 #include "_std_list.h"
 #include "_std_math.h"
+#include "_std_string.h"
 
 #define SCOPE_SWEEP 1000
 
@@ -37,6 +38,7 @@ namespace nouse {
 
 		this->globalVariables = new Object();
 
+		// _std.h
 		this->registerFunction("this", &_getThis);
 
 		this->registerFunction("set_show_errors", &_setShowErrors);
@@ -50,18 +52,23 @@ namespace nouse {
 		this->registerFunction("obj", &_newObject);
 		this->registerFunction("tuple", &_newTuple);
 		this->registerFunction("tuple_get", &_tupleGet);
-		this->registerFunction("list", &_newList);
 		this->registerFunction("error", &_createError);
 		this->registerFunction("string", &_toString);
 		this->registerFunction("int", &_toInt);
 		this->registerFunction("float", &_toFloat);
-		this->registerFunction("format", &_format);
 		this->registerFunction("if", &_extIf);
 		this->registerFunction("time", &_time);
 		this->registerFunction("require", &_require);
 		this->registerFunction("compile_string", &_compileString);
 
+		// _std_string.h
+		this->registerFunction("format", &_format);
+
+		// _std_math.h
 		this->setGlobal("math", getStdMathObj());
+
+		// _std_list.h
+		this->registerFunction("list", &_newList);
 	}
 	Context::~Context() {
 		for (int i = 0; i < this->objects.size(); i++) {
