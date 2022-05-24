@@ -60,6 +60,7 @@ namespace nouse {
 		this->registerFunction("time", &_time);
 		this->registerFunction("require", &_require);
 		this->registerFunction("compile_string", &_compileString);
+		this->registerFunction("$", &_arithm);
 
 		// _std_string.h
 		this->registerFunction("format", &_format);

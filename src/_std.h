@@ -401,4 +401,21 @@ namespace nouse {
 		result->setFunction(f);
 		return result;
 	}
+	// this serves as a means of countering nouse's janky parser/lexer
+	// for safety, '$' should prefix every mathematical operation in brackets and every
+	// negative value for now.
+	Value* _arithm(Context* ctx, i64 branch, i64 line, i64 fileind) {
+		std::vector< Value* > args = ctx->getTopFunctionArgs();
+		if (args.size() < 1) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": '$' takes one argument" << std::endl;
+			Value* result = new Value();
+			String* _s = new String("NotEnoughArguments");
+			result->setError(_s);
+			delete _s;
+			return result;
+		}
+		Value* result = new Value();
+		result->set(args[0]);
+		return result;
+	}
 }
