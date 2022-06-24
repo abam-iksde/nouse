@@ -12,6 +12,8 @@
 #include "tokenize.h"
 #include "compile.h"
 
+#include "_std_list.h"
+
 namespace nouse {
 	i64 isNum(stdstr_t);
 
@@ -416,6 +418,20 @@ namespace nouse {
 		}
 		Value* result = new Value();
 		result->set(args[0]);
+		return result;
+	}
+
+	extern std::vector< std::vector< Value* >* > _lists;
+	Value* _getCommandlineArgs(Context* ctx, i64 branch, i64 line, i64 fileind) {
+		Value* result = _newList(ctx,branch,line,fileind);
+		i64 listi = result->getObject()->fields[";listspot"]->getInt();
+		for (i64 i = 0; i < ctx->commandLineArgs.size(); i++) {
+			Value* v = new Value();
+			String* s = new String(ctx->commandLineArgs[i]);
+			v->setString(s);
+			delete s;
+			_lists[listi]->push_back(v);
+		}
 		return result;
 	}
 }

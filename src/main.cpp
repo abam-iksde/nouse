@@ -16,7 +16,7 @@ int main(int argc,char** argv) {
 	
 	nouse::init();
 	std::vector< nouse::Token > tokens;
-	nouse::Context* ctx = new nouse::Context();
+	nouse::Context* ctx = new nouse::Context(argc,argv);
 
 	nouse::Function* f;
 	if (argc > 1) {

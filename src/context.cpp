@@ -33,7 +33,7 @@ namespace nouse {
 		return vGetVarCurrentScope;
 	}
 
-	Context::Context() {
+	Context::Context(i64 argc, char** argv) {
 		this->scopeSweep_ = SCOPE_SWEEP;
 
 		this->globalVariables = new Object();
@@ -61,6 +61,7 @@ namespace nouse {
 		this->registerFunction("require", &_require);
 		this->registerFunction("compile_string", &_compileString);
 		this->registerFunction("$", &_arithm);
+		this->registerFunction("get_command_line_args", &_getCommandlineArgs);
 
 		// _std_string.h
 		this->registerFunction("format", &_format);
@@ -73,6 +74,10 @@ namespace nouse {
 
 		// _std_list.h
 		this->registerFunction("list", &_newList);
+
+		for (i64 i = 1; i < argc; i++) {
+			this->commandLineArgs.push_back(argv[i]);
+		}
 	}
 	Context::~Context() {
 		for (int i = 0; i < this->objects.size(); i++) {

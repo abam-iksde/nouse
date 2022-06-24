@@ -1,0 +1,14 @@
+test = {
+	let x = 3;
+	println("y: %v" % y);
+};
+
+{
+	let y = 32;
+	test();
+	println("x: %v" % x);
+	test@();
+	println("x: %v" % x);
+	test@@();
+	println("x: %v" % x);
+}();

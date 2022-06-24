@@ -24,10 +24,12 @@ namespace nouse {
 		std::vector< std::vector< Value* > > functionArguments;
 
 		i64 scopeSweep_;
+
 	public:
+		std::vector < std::string > commandLineArgs;
 		std::map< stdstr_t, Object* > loadedModules;
 
-		Context();
+		Context(i64 argc=0, char** argv=nullptr);
 		~Context();
 		Value* getVariable(stdstr_t name, i64 branch = -1);
 		Value* setVariable(stdstr_t name, Value* v, i64 branch = -1, i64 scope = -1);
