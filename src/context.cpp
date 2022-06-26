@@ -78,6 +78,7 @@ namespace nouse {
 		
 		// _std_file.h
 		this->registerFunction("file_read", &_readFile);
+		this->registerFunction("file_write", &_writeFile);
 
 		for (i64 i = 1; i < argc; i++) {
 			this->commandLineArgs.push_back(argv[i]);

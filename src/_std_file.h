@@ -43,6 +43,32 @@ namespace nouse {
 		delete s;
 		return result;
 	}
+	Value* _writeFile(Context* ctx, i64 branch, i64 line, i64 fileind) {
+		std::vector<Value*> args = ctx->getTopFunctionArgs();
+		if (args.size() < 2) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'file_write' takes two arguments" << std::endl;
+			Value* result = new Value();
+			String* _s = new String("NotEnoughArguments");
+			result->setError(_s);
+			delete _s;
+			return result;
+		}
+		Value* arg1 = args[0];
+		if (arg1->getType() != ValueType::STRING) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": first argument 'file_write' has to be a string" << std::endl;
+			Value* result = new Value();
+			String* _s = new String("InvalidArgument");
+			result->setError(_s);
+			delete _s;
+			return result;
+		}
+		Value* arg2 = args[1];
+		
+		std::ofstream f(arg1->getString()->value);
+		f << arg2->toString();
+		f.close();
+		return new Value();
+	}
 }
 
 #endif
