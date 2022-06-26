@@ -182,6 +182,53 @@ namespace nouse {
 		delete s;
 		return result;
 	}
+	Value* _stringFind(Context* ctx, i64 branch, i64 line, i64 fileind) {
+		std::vector< Value* > args = ctx->getTopFunctionArgs();
+		if (args.size() < 2) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": 'str_find' takes at least 2 arguments" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("NotEnoughArguments");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		Value* arg1 = args[0];
+		if (arg1->getType() != ValueType::STRING) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": first argument of 'str_find' has to be a string" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		Value* arg3 = args[1];
+		if (arg3->getType() != ValueType::STRING) {
+			if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": second argument of 'str_find' has to be a string" << std::endl;
+			Value* v = new Value();
+			String* _s = new String("InvalidArgument");
+			v->setError(_s);
+			delete _s;
+			return v;
+		}
+		i64 pos = 0;
+		if (args.size() > 2) {
+			Value* arg2 = args[2];
+			if (arg2->getType() != ValueType::INT) {
+				if (showErrors()) std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind) << "' line: " << line << ": third argument of 'str_find' has to be an int" << std::endl;
+				Value* v = new Value();
+				String* _s = new String("InvalidArgument");
+				v->setError(_s);
+				delete _s;
+				return v;
+			}
+			pos = arg2->getInt();
+		}
+		i64 result = arg1->getString()->value.find(arg3->getString()->value, pos);
+		if (result == stdstr_t::npos) return new Value();
+		Value* vResult = new Value();
+		vResult->setInt(result);
+		return vResult;
+	}
 }
 
 #endif
