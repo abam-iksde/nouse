@@ -70,6 +70,7 @@ namespace nouse {
 		this->registerFunction("str_char_at", &_stringCharAt);
 		this->registerFunction("str_substr", &_stringSubstr);
 		this->registerFunction("str_find", &_stringFind);
+		this->registerFunction("str_find_char", &_stringFindChar);
 
 		// _std_math.h
 		this->setGlobal("math", getStdMathObj());
