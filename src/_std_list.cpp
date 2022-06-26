@@ -159,7 +159,7 @@ namespace nouse {
 		i64 listInd = oThis->getField(";listspot")->getInt();
 		stdstr_t result = "[\n";
 		for (i64 i = 0; i < _lists[listInd]->size(); i++) {
-			result += (*_lists[listInd])[i]->toString() + ", ";
+			result += (*_lists[listInd])[i]->toString() + ", \n";
 		}
 		result += ']';
 		Value* vResult = new Value();

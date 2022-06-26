@@ -128,5 +128,8 @@
     <ClInclude Include="src\_std_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\_std_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

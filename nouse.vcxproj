@@ -184,6 +184,7 @@
     <ClInclude Include="src/_std.h" />
     <ClInclude Include="src/_std_list.h" />
     <ClInclude Include="src/_std_math.h" />
+    <ClInclude Include="src\_std_file.h" />
     <ClInclude Include="src\_std_string.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

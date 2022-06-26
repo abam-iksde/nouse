@@ -9,6 +9,7 @@
 #include "_std_list.h"
 #include "_std_math.h"
 #include "_std_string.h"
+#include "_std_file.h"
 
 #define SCOPE_SWEEP 1000
 
@@ -74,6 +75,9 @@ namespace nouse {
 
 		// _std_list.h
 		this->registerFunction("list", &_newList);
+		
+		// _std_file.h
+		this->registerFunction("file_read", &_readFile);
 
 		for (i64 i = 1; i < argc; i++) {
 			this->commandLineArgs.push_back(argv[i]);
