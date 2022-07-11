@@ -4,9 +4,9 @@
 #include "classdef.h"
 
 namespace nouse {
-	void initStdList();
-	void closeStdList();
-	Value* _newList(Context* ctx, i64 branch, i64 line, i64 fileind);
-}
+void initStdList();
+void closeStdList();
+Value* _newList(Context* ctx, i64 branch, i64 line, i64 fileind);
+} // namespace nouse
 
 #endif

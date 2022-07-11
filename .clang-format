@@ -1,0 +1,4 @@
+BasedOnStyle: LLVM
+SpacesInAngles: true
+PointerAlignment: Left
+AlignAfterOpenBracket: false

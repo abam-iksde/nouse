@@ -6,11 +6,11 @@
 #include "classdef.h"
 
 namespace nouse {
-	class String {
-	public:
-		stdstr_t value;
-		String(stdstr_t value);
-	};
-}
+class String {
+public:
+  stdstr_t value;
+  String(stdstr_t value);
+};
+} // namespace nouse
 
 #endif

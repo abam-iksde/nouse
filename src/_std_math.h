@@ -4,9 +4,9 @@
 #include "classdef.h"
 
 namespace nouse {
-	void initStdMath();
-	void closeStdMath();
-	Value* getStdMathObj();
-}
+void initStdMath();
+void closeStdMath();
+Value* getStdMathObj();
+} // namespace nouse
 
 #endif

@@ -3,7 +3,5 @@
 #include "classdef.h"
 
 namespace nouse {
-	String::String(stdstr_t v) {
-		this->value = v;
-	}
-}
+String::String(stdstr_t v) { this->value = v; }
+} // namespace nouse

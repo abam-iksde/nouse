@@ -1,0 +1,17 @@
+src/_std_list.cpp
+src/_std_math.cpp
+src/compile.cpp
+src/context.cpp
+src/debug.cpp
+src/function.cpp
+src/function_call.cpp
+src/main.cpp
+src/native_function.cpp
+src/nouse.cpp
+src/object.cpp
+src/operator.cpp
+src/string.cpp
+src/tokenize.cpp
+src/tuple.cpp
+src/value.cpp
+src/vname.cpp
