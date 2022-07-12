@@ -124,7 +124,8 @@ void Context::newObject(Object* o) { this->objects.push_back(o); }
 void Context::deleteObject(Object* o) {
   std::map< stdstr_t, Value* >::iterator it;
   for (it = this->globalVariables->fields.begin();
-       it != this->globalVariables->fields.end(); it++) {
+       it != this->globalVariables->fields.end();
+       it++) {
     if (it->second->getType() == ValueType::OBJECT) {
       if (it->second->getObject() == o) {
         it->second->makeNone();
@@ -134,7 +135,8 @@ void Context::deleteObject(Object* o) {
   for (i64 i = 0; i < this->variables.size(); i++) {
     for (i64 j = 0; j < this->variables[i].size(); j++) {
       for (it = this->variables[i][j]->fields.begin();
-           it != this->variables[i][j]->fields.end(); it++) {
+           it != this->variables[i][j]->fields.end();
+           it++) {
         if (it->second->getType() == ValueType::OBJECT) {
           if (it->second->getObject() == o) {
             it->second->makeNone();

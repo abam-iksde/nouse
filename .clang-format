@@ -2,3 +2,7 @@ BasedOnStyle: LLVM
 SpacesInAngles: true
 PointerAlignment: Left
 AlignAfterOpenBracket: false
+AlignConsecutiveDeclarations: false
+AlignConsecutiveAssignments: false
+BinPackArguments: false
+BinPackParameters: false

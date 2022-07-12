@@ -15,8 +15,10 @@ namespace nouse {
 std::map< stdstr_t, OperatorSides > operatorsSides;
 std::vector< std::map< stdstr_t, Value* > > operators;
 void addOperator(stdstr_t s,
-    Value* (*f)(Context* ctx, i64 branch, i64 line, i64 fileind), i64 priority,
-    OperatorSides operatorSide, boolean resultDisposable) {
+    Value* (*f)(Context* ctx, i64 branch, i64 line, i64 fileind),
+    i64 priority,
+    OperatorSides operatorSide,
+    boolean resultDisposable) {
   if (priority < 0)
     return;
   while (operators.size() < priority + 1) {

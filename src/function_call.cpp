@@ -9,8 +9,11 @@
 #include "value.h"
 
 namespace nouse {
-FunctionCall::FunctionCall(Value* f, std::vector< Value* > arg, i64 line_,
-    i64 fileind_, boolean appendBranch_) {
+FunctionCall::FunctionCall(Value* f,
+    std::vector< Value* > arg,
+    i64 line_,
+    i64 fileind_,
+    boolean appendBranch_) {
   this->function = f;
   this->args = arg;
   this->line = line_;

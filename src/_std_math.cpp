@@ -58,12 +58,14 @@ f64 __mSign(f64 x) {
 
 build1ArgMathFunction(_mathSin, "sin", std::sin) build1ArgMathFunction(
     _mathCos, "cos", std::cos) build1ArgMathFunction(_mathAbs, "abs", std::abs)
-    build1ArgMathFunction(_mathLog, "log", std::log) build1ArgMathFunction(
-        _mathRound, "round", std::round) build1ArgMathFunction(_mathSqrt,
-        "sqrt", std::sqrt) build1ArgMathFunction(_mathCbrt, "cbrt", std::cbrt)
-        build1ArgMathFunction(_mathSign, "sign", __mSign)
+    build1ArgMathFunction(_mathLog, "log", std::log)
+        build1ArgMathFunction(_mathRound, "round", std::round)
+            build1ArgMathFunction(_mathSqrt, "sqrt", std::sqrt)
+                build1ArgMathFunction(_mathCbrt, "cbrt", std::cbrt)
+                    build1ArgMathFunction(_mathSign, "sign", __mSign)
 
-            Value* _mathMax(Context* ctx, i64 branch, i64 line, i64 fileind) {
+                        Value* _mathMax(
+                            Context* ctx, i64 branch, i64 line, i64 fileind) {
   std::vector< Value* > args = ctx->getTopFunctionArgs();
   if (args.size() > 0) {
     f64 x = 0.0f;

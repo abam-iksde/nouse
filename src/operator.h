@@ -13,7 +13,8 @@ enum class OperatorSides : i64 {
 };
 
 void addOperator(stdstr_t s,
-    Value* (*f)(Context* ctx, i64 branch, i64 line, i64 fileind), i64 priority,
+    Value* (*f)(Context* ctx, i64 branch, i64 line, i64 fileind),
+    i64 priority,
     OperatorSides operatorSide = OperatorSides::BOTH,
     boolean resultDisposable = b_true);
 i64 getOperatorBottomPriority();
