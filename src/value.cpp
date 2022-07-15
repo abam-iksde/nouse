@@ -60,17 +60,28 @@ stdstr_t getValueTypeName(ValueType t) {
   return "unknown";
 }
 ValueType getValueTypeFromName(stdstr_t name) {
-  if (name == "name") return ValueType::NAME;
-  if (name == "int") return ValueType::INT;
-  if (name == "float") return ValueType::FLOAT;
-  if (name == "boolean") return ValueType::BOOLEAN;
-  if (name == "string") return ValueType::STRING;
-  if (name == "object") return ValueType::OBJECT;
-  if (name == "function") return ValueType::FUNCTION;
-  if (name == "native_function") return ValueType::NATIVE_FUNCTION;
-  if (name == "function_call") return ValueType::FUNCTION_CALL;
-  if (name == "tuple") return ValueType::TUPLE;
-  if (name == "error") return ValueType::_ERROR;
+  if (name == "name")
+    return ValueType::NAME;
+  if (name == "int")
+    return ValueType::INT;
+  if (name == "float")
+    return ValueType::FLOAT;
+  if (name == "boolean")
+    return ValueType::BOOLEAN;
+  if (name == "string")
+    return ValueType::STRING;
+  if (name == "object")
+    return ValueType::OBJECT;
+  if (name == "function")
+    return ValueType::FUNCTION;
+  if (name == "native_function")
+    return ValueType::NATIVE_FUNCTION;
+  if (name == "function_call")
+    return ValueType::FUNCTION_CALL;
+  if (name == "tuple")
+    return ValueType::TUPLE;
+  if (name == "error")
+    return ValueType::_ERROR;
   return ValueType::NONE;
 }
 void Value::makeNone() {
