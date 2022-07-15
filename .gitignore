@@ -397,5 +397,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# Mac's settings files
 .DS_Store
+
+# Nouse specific ignores
 build
+ascree
