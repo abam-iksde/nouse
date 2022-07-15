@@ -22,6 +22,7 @@ enum class ValueType {
   _ERROR,
 };
 stdstr_t getValueTypeName(ValueType);
+ValueType getValueTypeFromName(stdstr_t name);
 class Value {
 private:
   ValueType type;

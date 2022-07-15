@@ -44,6 +44,7 @@ Context::Context(i64 argc, char** argv) {
   this->registerFunction("set_show_user_errors", &_setShowUserErrors);
   this->registerFunction("delete", &_deleteObj);
   this->registerFunction("args", &_args);
+  this->registerFunction("args_assert", &_argsAssert);
   this->registerFunction("print", &_print);
   this->registerFunction("println", &_printLine);
   this->registerFunction("input", &_input);

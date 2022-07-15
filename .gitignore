@@ -400,5 +400,8 @@ FodyWeavers.xsd
 # Mac's settings files
 .DS_Store
 
+# vscode
+.vscode
+
 # Nouse specific ignores
 build
