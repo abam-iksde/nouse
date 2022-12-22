@@ -53,7 +53,7 @@ Context::Context(i64 argc, char** argv) {
   this->registerFunction("tuple", &_newTuple);
   this->registerFunction("tuple_get", &_tupleGet);
   this->registerFunction("error", &_createError);
-  this->registerFunction("string", &_toString);
+  this->registerFunction("str", &_toString);
   this->registerFunction("int", &_toInt);
   this->registerFunction("float", &_toFloat);
   this->registerFunction("if", &_extIf);
