@@ -355,7 +355,7 @@ Value* _toInt(Context* ctx, i64 branch, i64 line, i64 fileind) {
   if (args.size() > 0) {
     if (args[0]->getType() == ValueType::STRING) {
       if (isNum(args[0]->getString()->value) > 0) {
-        result->setInt((i64)std::stof(args[0]->getString()->value));
+        result->setInt((i64)std::stoll(args[0]->getString()->value));
       }
     } else if (args[0]->getType() == ValueType::FLOAT) {
       result->setInt((i64)args[0]->getFloat());
