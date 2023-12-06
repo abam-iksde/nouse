@@ -174,10 +174,10 @@ Value* _argsAssert(Context* ctx, i64 branch, i64 line, i64 fileind) {
                   << i + 1 << ", got "
                   << getValueTypeName(functionArgs[i]->getType())
                   << ", expected one of ";
-        for (i64 j = 0;j < words.size();j++) {
-          std::cout << words[j] << ", ";
-        }
-        std::cout << std::endl;
+      for (i64 j = 0; j < words.size(); j++) {
+        std::cout << words[j] << ", ";
+      }
+      std::cout << std::endl;
       String* _s = new String("ArgsAssertionFailed");
       result->setError(_s);
       return result;
