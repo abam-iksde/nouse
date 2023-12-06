@@ -44,6 +44,7 @@ Context::Context(i64 argc, char** argv) {
   this->registerFunction("set_show_user_errors", &_setShowUserErrors);
   this->registerFunction("delete", &_deleteObj);
   this->registerFunction("args", &_args);
+  this->registerFunction("args_assert", &_argsAssert);
   this->registerFunction("print", &_print);
   this->registerFunction("println", &_printLine);
   this->registerFunction("input", &_input);
@@ -52,7 +53,7 @@ Context::Context(i64 argc, char** argv) {
   this->registerFunction("tuple", &_newTuple);
   this->registerFunction("tuple_get", &_tupleGet);
   this->registerFunction("error", &_createError);
-  this->registerFunction("string", &_toString);
+  this->registerFunction("str", &_toString);
   this->registerFunction("int", &_toInt);
   this->registerFunction("float", &_toFloat);
   this->registerFunction("if", &_extIf);

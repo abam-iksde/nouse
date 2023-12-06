@@ -1,0 +1,3 @@
+file_read(filename: string): string
+str_substr(text: string, pos: int, len: int): string
+str_find(str: string, substr: string): int

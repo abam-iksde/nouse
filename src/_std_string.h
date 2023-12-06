@@ -219,7 +219,7 @@ Value* _stringSubstr(Context* ctx, i64 branch, i64 line, i64 fileind) {
     delete _s;
     return v;
   }
-  if (pos + len >= arg0->getString()->value.length()) {
+  if (pos + len > arg0->getString()->value.length()) {
     if (showErrors())
       std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                 << "' line: " << line
@@ -307,7 +307,7 @@ Value* _stringFindChar(Context* ctx, i64 branch, i64 line, i64 fileind) {
     if (showErrors())
       std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                 << "' line: " << line
-                << ": 'str_find' takes at least 2 arguments" << std::endl;
+                << ": 'str_find_char' takes at least 2 arguments" << std::endl;
     Value* v = new Value();
     String* _s = new String("NotEnoughArguments");
     v->setError(_s);
@@ -319,7 +319,7 @@ Value* _stringFindChar(Context* ctx, i64 branch, i64 line, i64 fileind) {
     if (showErrors())
       std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                 << "' line: " << line
-                << ": first argument of 'str_find' has to be a string"
+                << ": first argument of 'str_find_char' has to be a string"
                 << std::endl;
     Value* v = new Value();
     String* _s = new String("InvalidArgument");
@@ -332,7 +332,7 @@ Value* _stringFindChar(Context* ctx, i64 branch, i64 line, i64 fileind) {
     if (showErrors())
       std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                 << "' line: " << line
-                << ": second argument of 'str_find' has to be a string"
+                << ": second argument of 'str_find_char' has to be a string"
                 << std::endl;
     Value* v = new Value();
     String* _s = new String("InvalidArgument");
@@ -345,7 +345,7 @@ Value* _stringFindChar(Context* ctx, i64 branch, i64 line, i64 fileind) {
       std::cout
           << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
           << "' line: " << line
-          << ": second argument of 'str_find' has to be a non-empty string"
+          << ": second argument of 'str_find_char' has to be a non-empty string"
           << std::endl;
     Value* v = new Value();
     String* _s = new String("InvalidArgument");
@@ -360,7 +360,7 @@ Value* _stringFindChar(Context* ctx, i64 branch, i64 line, i64 fileind) {
       if (showErrors())
         std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                   << "' line: " << line
-                  << ": third argument of 'str_find' has to be an int"
+                  << ": third argument of 'str_find_char' has to be an int"
                   << std::endl;
       Value* v = new Value();
       String* _s = new String("InvalidArgument");

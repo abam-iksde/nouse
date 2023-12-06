@@ -107,6 +107,85 @@ Value* _args(Context* ctx, i64 branch, i64 line, i64 fileind) {
   result->setInt(args.size());
   return result;
 }
+void splitString_simple(std::vector< stdstr_t >& result,
+    stdstr_t str,
+    std::vector< char >& delims) {
+  stdstr_t buffer = "";
+  boolean isWhitespace;
+  for (i64 i = 0; i < str.length(); i++) {
+    isWhitespace = b_false;
+    for (i64 j = 0; j < delims.size(); j++) {
+      if (str[i] == delims[j]) {
+        if (buffer.length() > 0)
+          result.push_back(buffer);
+        isWhitespace = b_true;
+        break;
+      }
+    }
+    if (!isWhitespace) {
+      buffer += str[i];
+    }
+  }
+  if (buffer.length() > 0) {
+    result.push_back(buffer);
+  }
+}
+Value* _argsAssert(Context* ctx, i64 branch, i64 line, i64 fileind) {
+  std::vector< Value* > args = ctx->getTopFunctionArgs();
+  std::vector< Value* > functionArgs = ctx->getTopFunctionArgs(1);
+  if (args.size() != functionArgs.size()) {
+    if (showErrors())
+      std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
+                << "' line: " << line
+                << ": 'args_assert' - arguments count doesn't match, given "
+                << args.size() << ", expecting " << functionArgs.size()
+                << std::endl;
+  }
+  Value* result = new Value();
+  std::vector< char > delims;
+  delims.push_back('|');
+  delims.push_back(' ');
+  std::vector< stdstr_t > words;
+  for (i64 i = 0; i < args.size(); i++) {
+    if (args[i]->getType() != ValueType::STRING) {
+      if (showErrors())
+        std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
+                  << "' line: " << line
+                  << ": every argument of 'args_assert' has to be a string"
+                  << std::endl;
+      String* _s = new String("ArgsAssertionFailed");
+      result->setError(_s);
+      delete _s;
+      return result;
+    }
+    words.clear();
+    splitString_simple(words, args[i]->getString()->value, delims);
+    boolean valid = b_false;
+    for (i64 j = 0; j < words.size(); j++) {
+      if (words[j] == getValueTypeName(functionArgs[i]->getType())) {
+        valid = b_true;
+        break;
+      }
+    }
+    if (!valid) {
+      if (showErrors())
+        std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
+                  << "' line: " << line << ": 'args_assert' - invalid argument "
+                  << i + 1 << ", got "
+                  << getValueTypeName(functionArgs[i]->getType())
+                  << ", expected one of ";
+      for (i64 j = 0; j < words.size(); j++) {
+        std::cout << words[j] << ", ";
+      }
+      std::cout << std::endl;
+      String* _s = new String("ArgsAssertionFailed");
+      result->setError(_s);
+      return result;
+    }
+  }
+  result->setBoolean(b_true);
+  return result;
+}
 Value* _print(Context* ctx, i64 branch, i64 line, i64 fileind) {
   std::vector< Value* > args = ctx->getTopFunctionArgs();
   for (int i = 0; i < args.size(); i++) {
@@ -276,7 +355,7 @@ Value* _toInt(Context* ctx, i64 branch, i64 line, i64 fileind) {
   if (args.size() > 0) {
     if (args[0]->getType() == ValueType::STRING) {
       if (isNum(args[0]->getString()->value) > 0) {
-        result->setInt((i64)std::stof(args[0]->getString()->value));
+        result->setInt((i64)std::stoll(args[0]->getString()->value));
       }
     } else if (args[0]->getType() == ValueType::FLOAT) {
       result->setInt((i64)args[0]->getFloat());

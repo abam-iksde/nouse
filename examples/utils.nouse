@@ -1,0 +1,99 @@
+let str_split = {
+  args_assert('string', 'string');
+  args(let text, let delimiter);
+
+  let delimiter_length = str_length(delimiter);
+
+  let result = list();
+  let pos = str_find(text, delimiter);
+  {pos != none} do {
+    result:append(str_substr(text, 0, pos));
+    (pos == str_length(text) - 1) ? ({
+      pos = none;
+      text = "";
+    } {
+      text = str_substr(text, pos + delimiter_length, str_length(text) - pos - delimiter_length);
+      pos = str_find(text, delimiter);
+    });
+  };
+  result:append(text);
+  result;
+};
+
+let AugmentedList = {
+  args(let result);
+  (result == none) ? {
+    result = list();
+  };
+
+  result.reduce = {
+    args(let callback, let first);
+    let i = 0;
+    {first == none} ? {
+      i = 1;
+      first = this():get(0);
+    };
+    let current = first;
+    {i < this():length()} do {
+      current = callback(current, this():get(i));
+      i = i + 1;
+    };
+    current;
+  };
+
+  result.sort = {
+    args(let compare);
+    let result;
+    (this():length() <= 1) ? ({
+      result = _:AugmentedList(this());
+    } {
+      let pivot = this():get(0);
+      let list1 = _:AugmentedList();
+      let list2 = _:AugmentedList();
+      let i = 1;
+      {i < this():length()} do {
+        let element = this():get(i);
+        ((compare(pivot, element)) ? (list1, list2)):append(element);
+        i = i+1;
+      };
+      list1 = list1:sort(compare);
+      list2 = list2:sort(compare);
+      println(list1);
+      list1:append(pivot);
+      i = 0;
+      {i < list2:length()} do {
+        list1:append(list2:get(i));
+      }
+      result = list1;
+    });
+    result;
+  };
+
+  result.filter = {
+    args(let predicate);
+    let result = _:AugmentedList();
+    let i = 0;
+    {i < this():length()} do {
+      let element = this():get(i);
+      predicate(element) ? {
+        result:append(element);
+      };
+      i = i+1;
+    };
+    result;
+  };
+
+  result.map = {
+    args(let callback);
+    let result = _:AugmentedList();
+    let i = 0;
+    {i < this():length()} do {
+      let element = this():get(i);
+      result:append(callback(element));
+      i = i+1;
+    };
+    result;
+  };
+
+  result;
+};
