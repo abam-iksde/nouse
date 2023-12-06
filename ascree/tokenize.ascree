@@ -1,3 +1,0 @@
-tokenize_string = {
-  args_assert("string");
-};

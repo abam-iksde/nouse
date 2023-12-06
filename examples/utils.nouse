@@ -69,5 +69,31 @@ let AugmentedList = {
     result;
   };
 
+  result.filter = {
+    args(let predicate);
+    let result = _:AugmentedList();
+    let i = 0;
+    {i < this():length()} do {
+      let element = this():get(i);
+      predicate(element) ? {
+        result:append(element);
+      };
+      i = i+1;
+    };
+    result;
+  };
+
+  result.map = {
+    args(let callback);
+    let result = _:AugmentedList();
+    let i = 0;
+    {i < this():length()} do {
+      let element = this():get(i);
+      result:append(callback(element));
+      i = i+1;
+    };
+    result;
+  };
+
   result;
 };
