@@ -219,7 +219,7 @@ Value* _stringSubstr(Context* ctx, i64 branch, i64 line, i64 fileind) {
     delete _s;
     return v;
   }
-  if (pos + len >= arg0->getString()->value.length()) {
+  if (pos + len > arg0->getString()->value.length()) {
     if (showErrors())
       std::cout << "NOUSE ERROR file: '" << *getSourceFileName(fileind)
                 << "' line: " << line

@@ -161,8 +161,8 @@ Value* _argsAssert(Context* ctx, i64 branch, i64 line, i64 fileind) {
     words.clear();
     splitString_simple(words, args[i]->getString()->value, delims);
     boolean valid = b_false;
-    for (i64 i = 0; i < words.size(); i++) {
-      if (words[i] == getValueTypeName(functionArgs[i]->getType())) {
+    for (i64 j = 0; j < words.size(); j++) {
+      if (words[j] == getValueTypeName(functionArgs[i]->getType())) {
         valid = b_true;
         break;
       }
@@ -173,8 +173,14 @@ Value* _argsAssert(Context* ctx, i64 branch, i64 line, i64 fileind) {
                   << "' line: " << line << ": 'args_assert' - invalid argument "
                   << i + 1 << ", got "
                   << getValueTypeName(functionArgs[i]->getType())
-                  << ", expected " << words[i] << std::endl;
+                  << ", expected one of ";
+        for (i64 j = 0;j < words.size();j++) {
+          std::cout << words[j] << ", ";
+        }
+        std::cout << std::endl;
       String* _s = new String("ArgsAssertionFailed");
+      result->setError(_s);
+      return result;
     }
   }
   result->setBoolean(b_true);
